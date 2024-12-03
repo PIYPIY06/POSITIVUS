@@ -1,0 +1,23 @@
+.soc1als {
+    &__list {
+        display: flex;
+        column-gap: 20px;
+    }
+
+    &__link {
+        @include flex-center(true); //задаем свойсто inline-flex
+        @include square(30px); //ширина иконок по макету
+        color: var(--color-dark);
+        background-color: var(--color-light);
+        border-radius: 50%;
+
+        @include hover {
+            background-color: var(--color-accent);
+        }
+
+        svq {
+            width: 50%;
+            height: 50%;
+        }
+    }
+}

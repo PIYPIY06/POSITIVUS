@@ -1,0 +1,21 @@
+.burger-button{
+  @include reset-button;
+  @include square(48px);
+
+  position: relative;
+  border-radius:var(--border-radius-small);
+
+  @include hover{
+    background-color:var(--color-accent);
+  }
+ /// полоски для кнопки бургер через псевдоэлемент after и box-shadow
+  &::after{
+    @include abs-center;// нужен для абсолютного позиционирования внутри род. элемента
+    content: "";
+    width: 50%;
+    height: 2px;
+    background-color:var(--color-dark);
+    border-radius:5px;
+    box-shadow: 0 -8px, 0px 8px;
+  }
+}

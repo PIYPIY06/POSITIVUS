@@ -1,0 +1,100 @@
+//SASS переменные размеров экрана
+$desktop-above:1281px; // для mobile-first 1280 и выше
+$desktop:1280px; //для desktop-first 0-1280
+
+$tablet-above:1024px; //// для mobile-first 1024 и выше
+$tablet:1023px;//для desktop-first 0-1023
+
+$mobile-above:768px;// для mobile-first 767 и выше
+$mobile:767px;//для desktop-first  0-767
+
+$mobile-s-above:481px; // для mobile-first 481 и выше
+$mobile-s:480px;//для desktop-first 0-480
+
+
+@mixin desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+
+
+
+// миксин desktop использует медиазапрос для применения стилей, когда ширина экрана меньше или равна значению переменной $desktop.
+// Использование @content позволяет передавать любые стили или правила, которые вы хотите применить внутри медиазапроса.
+
+//@media (max-width: $desktop):
+
+//Этот медиазапрос проверяет, если ширина экрана меньше или равна значению переменной $desktop.
+
+//$desktop — это переменная, которая должна быть определена где-то в вашем SCSS файле (например, в файле переменных).
+//@content:
+//Это специальное ключевое слово, которое позволяет вставить произвольный CSS-код внутрь медиазапроса. Стили, переданные в миксин через @include desktop, будут вставлены в место @content.
+
+
+@mixin desktop-above{
+  @media (min-width: $desktop-above) {
+    @content;
+  }
+}
+//для mobile-first
+
+
+
+@mixin tablet{
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin tablet-above{
+  @media (min-width: $tablet-above) {
+    @content;
+  }
+}
+
+//для mobile-first
+
+@mixin mobile{
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin mobile-above{
+  @media (min-width: $mobile-above) {
+    @content;
+  }
+}
+
+@mixin mobile-s{
+  @media (max-width: $mobile-s) {
+    @content;
+  }
+}
+
+@mixin mobile-s-above{
+  @media (min-width: $mobile-s-above) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    // Стиль для устройств с поддержкой hover
+    &:hover {
+      @content; // Применяются переданные стили для :hover (препроцессор @content)
+    }
+  }
+
+  @media (hover: none) {
+    // Стиль для устройств без hover (например, мобильных)
+    &:active {
+      @content; // Применяются переданные стили для :active
+    }
+  }
+}
+
+//Миксин hover теперь корректно работает внутри блока, в данном случае внутри селектора button.
+//Внутри миксина используется @content, чтобы вставить стили для :hover или :active, переданные при вызове миксина.

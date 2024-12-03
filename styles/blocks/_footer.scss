@@ -1,0 +1,157 @@
+.footer {
+    @include mobile {
+        padding-inline: 0;
+    }
+    &__inner {
+        padding: 55px 60px 50px;
+        color: var(--color-light);
+        background: var(--color-dark);
+        @include mobile-above {
+            //для mobile-first 767 и выше
+            border-radius: var(--border-radius-large) var(--border-radius-large)
+                0 0; //разные значения углов для четырех углов
+        }
+        @include mobile {
+            padding: 50px var(--container-padding-x) 30px;
+          // так как при display contents (строчка 36),footer__logo,footer__menu,
+          // footer__soc1als,footer__body,footer__extra являются дочерними элементами footer__inner,
+          // то задаем свойства  footer__inner для этого миксина(медиазапроса mobile)
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap:37px;
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 30px;
+
+        &:not(:last-child) {
+            margin-bottom: 66px;
+        }
+        @include tablet {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 37px;
+        }
+      @include mobile {
+        display: contents;
+        //убираем из разметки HTML контейнер с классом footer__navigation,
+        // чтобы разместить footer__soc1als под footer__subscribe-form под кнопкой
+      }
+    }
+
+    &__menu {
+        &-list {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+
+            @include mobile {
+                flex-direction: column;
+                row-gap: 15px;
+            }
+        }
+
+        &-link {
+            display: inline-flex; //задаем inline-flex для того,чтобы можно было увеличить высоту элемента для увеличения по высоте области нажатия на ссылку
+            align-items: center; //выравниваем буквы по вертикали
+            height: 30px; //увеличиваем высоту области нажатия
+
+            text-decoration: underline;
+            @include hover {
+                color: var(--color-accent);
+            }
+            @include mobile {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__soc1als{
+      @include mobile {
+        order: 1;
+      }
+
+    }
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 50px;
+
+        @include mobile {
+            flex-direction: column;
+            align-items: center;
+            row-gap:inherit;
+        }
+
+      @include mobile-above { // для mobile-first 767 и выше
+        &:not(:last-child) {
+          padding-bottom: 50px;
+          border-bottom: 1px solid currentColor;
+          margin-bottom: 50px;
+        }
+      }
+
+      @include mobile-s{ //для desktop-first 0-480
+        width: 100%;
+      }
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        row-gap: 27px;
+
+        @include mobile {
+            text-align: center;
+            align-items: center;
+        }
+
+        &-title {
+            color: var(--color-dark);
+        }
+        &-body {
+            font-style: normal;
+
+            p:not(:last-child){
+                margin-bottom: 20px;
+            }
+            a {
+                @include hover {
+                    color: var(--color-accent);
+                }
+            }
+        }
+    }
+
+    &__extra {
+        display: flex;
+        column-gap: 40px;
+
+        @include mobile {
+            order: 2;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 15px;
+            border-top:1px solid currentColor;
+            padding-top:37px;
+            width:100%;
+        }
+    }
+
+    &__privacy-policy-link {
+        text-decoration: underline;
+        @include hover {
+            color: var(--color-accent);
+        }
+        @include mobile {
+            text-decoration: none;
+        }
+    }
+}

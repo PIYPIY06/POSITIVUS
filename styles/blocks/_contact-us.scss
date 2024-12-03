@@ -1,0 +1,68 @@
+.contact-us{
+  position:relative;
+  overflow-x:hidden;//cкрываем часть изображения по оси Х
+
+  @include mobile-above{ //для mobile-first 767 и выше будут применяться свойства
+    padding:60px 100px 80px;
+    background-color:var(--color-gray);
+    border-radius:var(--border-radius-large);
+  }
+
+  &::after{
+    --ContactUsImageOffsetY:62px; // создали переменную для задания отступов для изображения
+    content:"";
+    position:absolute;
+    top:50%;
+    left:100%;
+    transform:translate(-50%,-50%);
+    height:calc(100% - var(--ContactUsImageOffsetY) * 2); // расчет высоты изображения с учетом отступов по вертикали
+    aspect-ratio: 1;
+    background:url("../../images/contactusbg.svg")
+    center/contain no-repeat;
+
+    @include tablet{
+      display:none;
+    }
+  }
+
+  &__request-types,
+  &__body{
+    @include mobile{ //для desktop-first  0-767
+    background:var(--color-gray);
+    }
+  }
+
+  &__request-types{
+    @include mobile { //для desktop-first  0-767
+      padding: 40px 52px 36px;
+      border-radius: var(--border-radius-large) var(--border-radius-large) 0 0 ; //разные значения углов для четырех углов
+    }
+  }
+
+  &__form,
+  &__body{
+    display:flex;
+    flex-direction: column;
+  }
+
+  &__form{
+    @include tablet-above{ // до 1024 px ширина будет 100%; от 1024 и выше max-width:556px;
+      max-width:556px;
+    }
+    @include mobile-above{
+      row-gap: 40px;
+    }
+  }
+  &__body{
+    row-gap:25px;
+
+    @include mobile{ //для desktop-first  0-767
+    padding:10px 30px 50px;
+      border-radius: 0 0 var(--border-radius-large) var(--border-radius-large); //разные значения углов для четырех углов
+      margin-bottom: 30px;
+      row-gap:20px;
+    }
+  }
+}
+
+
